@@ -64,6 +64,14 @@
         align-items: center;
     }
 
+    #nav-links a{
+      color: black;
+    }
+
+    #nav-links a:hover{
+      color: red;
+    }
+
     .logo {
         display: flex;
         align-items: center;
@@ -1018,7 +1026,7 @@
   <!-- Header Section -->
   <header class="header">
         <div class="header-content">
-            <a href="/landing.html" class="logo">
+            <a href="/" class="logo">
                 <div class="logo-icon">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -1026,7 +1034,7 @@
                 </div>
                 <span class="logo-text">Horizon Health</span>
             </a>
-            <div>
+            <div id="nav-links">
               <a href="/" class="back-link">Home</a>
               <a href="/resources.html" class="back-link">Resources</a>
             </div>
