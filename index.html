@@ -13,6 +13,7 @@
       --foreground: hsl(200, 50%, 10%);
       --card: hsl(0, 0%, 100%);
       --primary: hsl(187, 65%, 28%);
+      --primary-light: hsl(187, 55%, 38%);
       --primary-foreground: hsl(0, 0%, 100%);
       --secondary: hsl(38, 92%, 50%);
       --secondary-foreground: hsl(0, 0%, 100%);
@@ -24,6 +25,7 @@
       --radius: 0.75rem;
       --font-display: 'Plus Jakarta Sans', sans-serif;
       --font-body: 'DM Sans', sans-serif;
+      
     }
 
     *, *::before, *::after {
@@ -62,35 +64,35 @@
         align-items: center;
     }
 
-            .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--foreground);
-        }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--foreground);
+    }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .logo-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
+    .logo-icon svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
 
-        .logo-text {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-        }
+    .logo-text {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
 
     .container {
       max-width: 1200px;
