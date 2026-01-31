@@ -6,5 +6,13 @@
   {
     "name": "Recording patient vitals",
     "filename": "SOP - Recording patient vitals.pdf"
+  },
+  {
+    "name": "Visit Creation,Check-In & Visit Type Assignment",
+    "filename": "Visit Creation,Check-In & Visit Type Assignment.pdf"
+  },
+  {
+    "name": "Appointment Scheduling & Calendar Management",
+    "filename": "Appointment Scheduling & Calendar Management.pdf"
   }
 ]
