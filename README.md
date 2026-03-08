@@ -1,2 +1,2 @@
 # website
-Landing page site for Horizon Health System
+Landing page site for Horizon Health Systems
