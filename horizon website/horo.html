@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | ABC Systems</title>
+    <style>
+        <style>
+    :root {
+        --primary-blue: #0284c7;
+        --dark-blue: #0f172a;
+        --text-main: #334155;
+        --bg-light: #f8fafc;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        color: var(--text-main);
+        background-color: #fff;
+        line-height: 1.6;
+    }
+
+    /* --- TOP NAVIGATION --- */
+    .resource-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        background: #fff;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .back-btn {
+        text-decoration: none;
+        color: var(--text-main);
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+    }
+
+    .back-btn:hover {
+        color: var(--primary-blue);
+    }
+
+    .nav-logo {
+        font-weight: 800;
+        color: var(--dark-blue);
+        font-size: 1.2rem;
+    }
+
+    .nav-logo span {
+        color: var(--primary-blue);
+    }
+
+    /* --- HERO SECTION --- */
+    .resource-hero {
+        text-align: center;
+        padding: 80px 5%;
+        background: linear-gradient(to bottom, #f0f9ff, #ffffff);
+    }
+
+    .hero-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        background: rgba(2, 132, 199, 0.1);
+        color: var(--primary-blue);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .resource-hero h1 {
+        font-size: 2.8rem;
+        color: var(--dark-blue);
+        margin-bottom: 15px;
+    }
+
+    .resource-hero h1 span {
+        color: var(--primary-blue);
+    }
+
+    .resource-hero p {
+        max-width: 600px;
+        margin: 0 auto;
+        color: #64748b;
+    }
+
+    /* --- RESOURCE GRID --- */
+    .resource-section {
+        padding: 60px 5% 100px;
+    }
+
+    .resource-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .resource-card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        border-color: var(--primary-blue);
+    }
+
+    .file-icon {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .resource-info h3 {
+        color: var(--dark-blue);
+        margin: 0 0 10px;
+    }
+
+    .resource-info p {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin-bottom: 15px;
+    }
+
+    .file-meta {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #94a3b8;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 25px;
+    }
+
+    /* --- DOWNLOAD BUTTON --- */
+    .download-link {
+        margin-top: auto;
+        text-align: center;
+        background: var(--bg-light);
+        color: var(--primary-blue);
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+
+    .download-link:hover {
+        background: var(--primary-blue);
+        color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        .resource-hero h1 { font-size: 2rem; }
+    }
+</style>
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation with Back Button -->
+    <nav class="resource-nav">
+        <a href="index.html" class="back-btn">
+            <span>←</span> Back to Home
+        </a>
+        <div class="nav-logo">ABC <span>Resources</span></div>
+    </nav>
+
+    <!-- Resource Hero -->
+    <header class="resource-hero">
+        <div class="hero-badge">Knowledge Base</div>
+        <h1>Documentation & <span>Guides</span></h1>
+        <p>Everything you need to master ABC Systems, from installation to advanced reporting.</p>
+    </header>
+
+    <!-- Resource Grid -->
+    <section class="resource-section">
+        <div class="resource-grid">
+            
+            <!-- Document 1 -->
+            <div class="resource-card">
+                <div class="file-icon">📄</div>
+                <div class="resource-info">
+                    <h3>User Manual v2.0</h3>
+                    <p>A comprehensive guide for doctors and nurses on patient management.</p>
+                    <span class="file-meta">PDF • 4.2 MB</span>
+                </div>
+                <a href="documents/user-manual.pdf" download class="download-link">Get Document</a>
+            </div>
+
+            <!-- Document 2 -->
+            <div class="resource-card">
+                <div class="file-icon">⚙️</div>
+                <div class="resource-info">
+                    <h3>Implementation Guide</h3>
+                    <p>Technical requirements and setup steps for clinic IT administrators.</p>
+                    <span class="file-meta">PDF • 2.8 MB</span>
+                </div>
+                <a href="documents/implementation-guide.pdf" download class="download-link">Get Document</a>
+            </div>
+
+            <!-- Document 3 -->
+            <div class="resource-card">
+                <div class="file-icon">📊</div>
+                <div class="resource-info">
+                    <h3>Analytics Dashboard Guide</h3>
+                    <p>Learn how to generate and interpret clinical and financial reports.</p>
+                    <span class="file-meta">PDF • 1.5 MB</span>
+                </div>
+                <a href="documents/analytics-guide.pdf" download class="download-link">Get Document</a>
+            </div>
+
+            <!-- Document 4 -->
+            <div class="resource-card">
+                <div class="file-icon">🛡️</div>
+                <div class="resource-info">
+                    <h3>Security Whitepaper</h3>
+                    <p>Detailed overview of our AES-256 encryption and data privacy protocols.</p>
+                    <span class="file-meta">PDF • 3.1 MB</span>
+                </div>
+                <a href="documents/security-whitepaper.pdf" download class="download-link">Get Document</a>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
