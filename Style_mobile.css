@@ -40,6 +40,7 @@
             display: flex;
             align-items: center;
             gap: 2rem;
+              color: var(--black);
         }
 
         .nav-links {
