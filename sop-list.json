@@ -22,6 +22,10 @@
   {
     "name": "Payment",
     "filename": "Payment.pdf"
+  },
+   {
+    "name": "Pharmacy",
+    "filename": "Pharmacy.pdf"
   }
   
 ]
