@@ -42,7 +42,7 @@
 /* Menu icon */
 .menu-toggle {
     display: none;
-    background: none;
+    background: blue;
     border: none;
     cursor: pointer;
     padding: 10px;
