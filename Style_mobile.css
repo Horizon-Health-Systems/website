@@ -1,538 +1,99 @@
 
-/* =========================================
+    
+  
+/* =========================================================
    HORIZON HEALTH SYSTEMS
-   SUPPORT PAGE - PURPLE & BLUE DESIGN
-========================================= */
+   CONSOLIDATED WEBSITE STYLESHEET
+   Pages covered: Home, Services, About Us, Support, Contact
+   Shared: Header, mobile navigation, footer, responsive layout
+   ========================================================= */
 
+/* 1. GLOBAL SETTINGS */
 :root {
+    --primary-blue: #0284c7;
+    --primary-blue-dark: #0369a1;
     --support-purple: #8b5cf6;
     --support-light-purple: #c4b5fd;
     --support-blue: #38bdf8;
-    --support-dark: #17113b;
-    --support-black: #080817;
+    --dark-blue: #0f172a;
+    --dark-purple: #17113b;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --light-blue: #e0f2fe;
+    --white: #ffffff;
+    --border-light: #e2e8f0;
+    --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
+    --shadow-strong: 0 20px 45px rgba(15, 23, 42, 0.14);
 }
 
-
-/* =========================================
-   SECTION ONE: HERO BACKGROUND
-========================================= */
-
-.support-hero {
-    position: relative;
-    min-height: 450px;
-    padding: 50px 20px;
+* {
     box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+    background: var(--white);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* 2. SHARED HEADER AND DESKTOP NAVIGATION */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    background:
-        linear-gradient(
-            100deg,
-            rgba(15, 10, 40, 0.92),
-            rgba(49, 25, 92, 0.78),
-            rgba(14, 116, 144, 0.45)
-        ),
-        url("images/online-support-bg.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    padding: 10px 5%;
+    background: var(--white);
+    box-shadow: 0 2px 14px rgba(15, 23, 42, 0.08);
 }
 
-.support-hero-overlay {
-    width: 100%;
+.logo-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-}
-
-.support-hero-content {
-    width: 100%;
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    color: #ffffff;
-    animation: supportHeroAppear 1s ease both;
-}
-
-.support-tag {
-    display: inline-block;
-    padding: 9px 16px;
-    margin-bottom: 20px;
-
-    color: var(--support-light-purple);
-    background: rgba(139, 92, 246, 0.15);
-    border: 1px solid rgba(196, 181, 253, 0.5);
-    border-radius: 30px;
-
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    backdrop-filter: blur(8px);
-}
-
-.support-hero-content h1 {
-    color: #ffffff;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 850;
-    line-height: 1.15;
-    margin: 0 0 22px;
-}
-
-.support-hero-content p {
-    max-width: 680px;
-    margin: 0 auto 30px;
-
-    color: #e2e8f0;
-    font-size: 17px;
-    line-height: 1.9;
-}
-
-.hero-support-btn {
-    display: inline-block;
-    padding: 14px 30px;
-
-    color: #ffffff;
-    background: linear-gradient(
-        110deg,
-        #8b5cf6,
-        #6366f1,
-        #0284c7
-    );
-
-    border-radius: 10px;
+    flex-shrink: 0;
     text-decoration: none;
-    font-weight: 750;
-
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-    transition: all 0.4s ease;
 }
 
-.hero-support-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4);
-}
-
-@keyframes supportHeroAppear {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =========================================
-   SECTION TWO: SUPPORT SECTION
-========================================= */
-
-.support-section {
-    position: relative;
-    padding: 90px 5%;
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 10% 20%,
-            rgba(139, 92, 246, 0.15),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(56, 189, 248, 0.12),
-            transparent 35%
-        ),
-        #f8f7ff;
-}
-
-.support-section-heading {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.support-section-heading span {
-    color: var(--support-purple);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 3px;
-}
-
-.support-section-heading h2 {
-    color: var(--support-dark);
-    font-size: clamp(2rem, 4vw, 2.7rem);
-    font-weight: 800;
-    margin: 15px 0;
-}
-
-.support-section-heading h2::after {
-    content: "";
+.logo-image {
     display: block;
-    width: 75px;
-    height: 4px;
-    margin: 15px auto;
-    border-radius: 10px;
-
-    background: linear-gradient(
-        90deg,
-        var(--support-purple),
-        var(--support-blue)
-    );
+    width: 150px;
+    height: 82px;
+    margin: 0;
+    object-fit: contain;
 }
 
-.support-section-heading p {
-    color: #64748b;
-    line-height: 1.8;
-}
-
-
-/* =========================================
-   FLEXBOX: TWO CARDS IN ONE ROW
-========================================= */
-
-.support-grid {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    gap: 35px;
-
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-
-/* =========================================
-   DARK SUPPORT CARDS
-========================================= */
-
-.support-card {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 3px;
-
-    border: none;
-    border-radius: 22px;
-
-    background: var(--support-black);
-
-    box-shadow: 0 12px 35px rgba(15, 10, 40, 0.25);
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-
-/* =========================================
-   360 DEGREE MOVING WAVE BORDER
-========================================= */
-
-.support-card::before {
-    content: "";
-    position: absolute;
-    inset: -150%;
-    z-index: -2;
-
-    background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        transparent 210deg,
-        #8b5cf6 245deg,
-        #c4b5fd 265deg,
-        #38bdf8 285deg,
-        #ffffff 300deg,
-        #6366f1 320deg,
-        transparent 350deg,
-        transparent 360deg
-    );
-
-    animation: supportWave 4s linear infinite;
-}
-
-.support-card::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    z-index: -1;
-
-    border-radius: 19px;
-
-    background: linear-gradient(
-        145deg,
-        #111126,
-        #080817 70%,
-        #17112e
-    );
-}
-
-@keyframes supportWave {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-/* =========================================
-   CARD CONTENT
-========================================= */
-
-.support-card-content {
-    position: relative;
-    z-index: 1;
-
-    padding: 35px;
-    color: #ffffff;
-}
-
-.support-card-content h3 {
-    color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 18px;
-
-    transition: color 0.35s ease;
-}
-
-.support-card-content p {
-    color: #cbd5e1;
-    line-height: 1.85;
-    margin-bottom: 20px;
-
-    transition: color 0.35s ease;
-}
-
-.support-card-content ol {
-    padding-left: 23px;
-    color: #cbd5e1;
-    line-height: 1.9;
-}
-
-.support-card-content li {
-    padding-left: 5px;
-    margin-bottom: 10px;
-
-    transition: color 0.35s ease;
-}
-
-
-/* =========================================
-   CARD IMAGE
-========================================= */
-
-.support-card img {
-    position: relative;
-    z-index: 1;
-
-    display: block;
-    width: 100%;
-    height: 250px;
-
-    object-fit: cover;
-    border-radius: 19px 19px 0 0;
-
-    filter: brightness(0.85);
-    transition: filter 0.4s ease;
-}
-
-
-/* =========================================
-   CARD ICON
-========================================= */
-
-.support-icon {
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 22px;
-
-    color: #ffffff;
-    background: linear-gradient(
-        135deg,
-        #8b5cf6,
-        #0284c7
-    );
-
-    border-radius: 12px;
-
-    font-size: 17px;
-    font-weight: 800;
-
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-}
-
-
-/* =========================================
-   SECURITY NOTICE
-========================================= */
-
-.support-security-note {
-    padding: 16px;
-    margin-top: 22px;
-
-    color: #e9d5ff !important;
-    background: rgba(139, 92, 246, 0.13);
-
-    border-left: 4px solid #a78bfa;
-    border-radius: 8px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================
-   CARD BUTTON
-========================================= */
-
-.support-card-btn {
-    display: inline-block;
-
-    padding: 13px 25px;
-    margin-top: 18px;
-
-    color: #ffffff;
-    background: linear-gradient(
-        110deg,
-        #8b5cf6,
-        #2563eb
-    );
-
-    border-radius: 10px;
+.brand-name {
+    color: var(--dark-blue);
+    font-size: 1.25rem;
+    font-weight: 700;
     text-decoration: none;
-    font-weight: 750;
-
-    box-shadow: 0 6px 18px rgba(139, 92, 246, 0.2);
-
-    transition: all 0.4s ease;
 }
 
-.support-card-btn:hover {
-    transform: translateY(-4px);
-
-    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.35);
-}
-
-
-/* =========================================
-   CARD HOVER EFFECT
-========================================= */
-
-.support-card:hover {
-    transform: translateY(-10px);
-
-    box-shadow:
-        0 15px 40px rgba(139, 92, 246, 0.28),
-        0 5px 25px rgba(56, 189, 248, 0.2);
-}
-
-.support-card:hover h3 {
-    color: #c4b5fd;
-}
-
-.support-card:hover p,
-.support-card:hover li {
-    color: #ffffff;
-}
-
-.support-card:hover img {
-    filter: brightness(1);
-}
-
-
-/* =========================================
-   RESPONSIVE DESIGN
-========================================= */
-
-@media (max-width: 768px) {
-
-    .support-hero {
-        min-height: 400px;
-        padding: 40px 18px;
-    }
-
-    .support-hero-overlay {
-        padding: 20px 0;
-    }
-
-    .support-hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .support-hero-content p {
-        font-size: 15px;
-    }
-
-    .support-section {
-        padding: 65px 5%;
-    }
-
-    .support-grid {
-        flex-direction: column;
-        gap: 28px;
-    }
-
-    .support-card {
-        flex: 1 1 auto;
-        width: 100%;
-    }
-
-    .support-card-content {
-        padding: 25px;
-    }
-
-    .support-card img {
-        height: 220px;
-    }
-
-    .support-card:hover {
-        transform: translateY(-5px);
-    }
-}
-
-
-/* =========================================
-   REDUCED MOTION ACCESSIBILITY
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .support-card::before {
-        animation: none;
-    }
-
-    .support-card,
-    .support-card-btn,
-    .hero-support-btn {
-        transition: none;
-    }
-
-    .support-card:hover,
-    .support-card-btn:hover,
-    .hero-support-btn:hover {
-        transform: none;
-    }
-
-    .support-hero-content {
-        animation: none;
-    }
-}
