@@ -1123,6 +1123,288 @@ header nav .btn-header {
     }
 }
 
+/* SECTION ONE: CENTER ALIGNMENT */
+
+.support-hero {
+    position: relative;
+    min-height: 450px;
+    padding: 50px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(15, 10, 40, 0.92),
+            rgba(49, 25, 92, 0.78),
+            rgba(14, 116, 144, 0.45)
+        ),
+        url("images/online-support-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.support-hero-overlay {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.support-hero-content {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+.support-hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .support-hero {
+        min-height: 400px;
+        padding: 40px 18px;
+    }
+
+    .support-hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .support-hero-content p {
+        font-size: 15px;
+    }
+}
+
+
+
+/* =========================================
+   SECTION TWO: DARK SUPPORT CARDS
+========================================= */
+
+.support-section {
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(139, 92, 246, 0.15),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(56, 189, 248, 0.12),
+            transparent 35%
+        ),
+        #f8f7ff;
+}
+
+/* CARD LAYOUT */
+.support-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* DARK CARD */
+.support-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 3px;
+    border-radius: 22px;
+    background: #080817;
+    box-shadow: 0 12px 35px rgba(15, 10, 40, 0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ROTATING PURPLE AND BLUE WAVE */
+.support-card::before {
+    content: "";
+    position: absolute;
+    inset: -150%;
+    z-index: -2;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 210deg,
+        #8b5cf6 245deg,
+        #c4b5fd 265deg,
+        #38bdf8 285deg,
+        #ffffff 300deg,
+        #6366f1 320deg,
+        transparent 350deg,
+        transparent 360deg
+    );
+    animation: supportWave 4s linear infinite;
+}
+
+/* DARK INNER BACKGROUND */
+.support-card::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    z-index: -1;
+    border-radius: 19px;
+    background: linear-gradient(
+        145deg,
+        #111126,
+        #080817 70%,
+        #17112e
+    );
+}
+
+@keyframes supportWave {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* CARD CONTENT */
+.support-card-content {
+    position: relative;
+    z-index: 1;
+    padding: 35px;
+    color: #ffffff;
+}
+
+/* CARD IMAGE */
+.support-card img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 19px 19px 0 0;
+    filter: brightness(0.85);
+}
+
+/* CARD HEADING */
+.support-card-content h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+    transition: color 0.35s ease;
+}
+
+/* CARD PARAGRAPH */
+.support-card-content p {
+    color: #cbd5e1;
+    line-height: 1.85;
+    margin-bottom: 20px;
+    transition: color 0.35s ease;
+}
+
+/* CARD LIST */
+.support-card-content ol {
+    padding-left: 23px;
+    color: #cbd5e1;
+    line-height: 1.9;
+}
+
+.support-card-content li {
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+/* CARD ICON */
+.support-icon {
+    background: linear-gradient(135deg, #8b5cf6, #0284c7);
+    color: white;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* SECURITY NOTICE */
+.support-security-note {
+    color: #e9d5ff !important;
+    background: rgba(139, 92, 246, 0.13);
+    border-left: 4px solid #a78bfa;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+/* BUTTON */
+.support-card-btn {
+    color: #ffffff;
+    background: linear-gradient(110deg, #8b5cf6, #2563eb);
+    border-radius: 10px;
+    padding: 13px 25px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 750;
+    transition: all 0.4s ease;
+}
+
+.support-card-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.35);
+}
+
+/* HOVER EFFECT */
+.support-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 15px 40px rgba(139, 92, 246, 0.28),
+        0 5px 25px rgba(56, 189, 248, 0.2);
+}
+
+.support-card:hover h3 {
+    color: #c4b5fd;
+}
+
+.support-card:hover p,
+.support-card:hover li {
+    color: #ffffff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .support-hero {
+        min-height: 450px;
+    }
+
+    .support-hero-overlay {
+        padding: 65px 6%;
+    }
+
+    .support-grid {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .support-card {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .support-card-content {
+        padding: 25px;
+    }
+
+    .support-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+
 
 
         footer {
