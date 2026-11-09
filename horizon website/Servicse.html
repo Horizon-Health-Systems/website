@@ -4,27 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servics</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="javascript.js" defer></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("#main-navigation");
+
+    if (!menuToggle || !navigation) return;
+
+    menuToggle.addEventListener("click", function () {
+
+        const isOpen = navigation.classList.toggle("menu-open");
+
+        menuToggle.classList.toggle("active", isOpen);
+
+        menuToggle.setAttribute("aria-expanded", isOpen);
+
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+    });
+
+});
+</script>
 </head>
 <body>
 
     
-   <header>
-        <a href="#" class="logo-container">
-            <img src="logobhdbsvg.svg" alt="Logo" class="logo-image">
-            
-        </a>
+   
+<header>
+    <a href="index.html" class="logo-container">
+        <img src="aboutm.svg" alt="Logo" class="logo-image">
+    </a>
 
-        <nav>
-            <div class="nav-links">
-                <a href="home.html">Home</a>
-                <a href="Servicse.html">Services</a>
-                <a href="Aboutus.html">About us</a>
-                <a href="Contactus.html">Contact Us</a>
-            </div>
-            <a href="resourse.html" class="btn-header">Resources</a>
-        </nav>
-    </header>
+    <button class="menu-toggle" type="button"
+            aria-label="Open navigation menu"
+            aria-controls="main-navigation"
+            aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="main-navigation">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="Servicse.html">Services</a>
+            <a href="Aboutus.html">About us</a>
+            <a href="Support.html">Support</a>
+            <a href="Project.html">Projects</a>
+            <a href="Contactus.html">Contact Us</a>
+        </div>
+
+        <a href="resources.html" class="btn-header">Resources</a>
+    </nav>
+</header>
 
         <!-- 1. HERO -->
     <section class="services-hero">
@@ -100,6 +138,7 @@
                     <h3>Go Live & Support</h3>
                     <p>Launch day assistance followed by 24/7 local technical support and maintenance.</p>
                 </div>
+                <div><iframe width="100%" height="150px" src="https://assist.zoho.com/login/embed-remote-support.jsp" frameborder="0"></iframe></div>
             </div>
         </div>
     </section>
@@ -154,7 +193,7 @@
             <div class="footer-brand">
                 <a href="#" class="logo-container">
                     <img src="logobhdbsvg.svg" alt="Logo" class="logo-image">
-                    <span class="brand-name"> Horizon <br>Healthsys</span>
+                    <span class="brand-name"> Horizon <br>Health<br>Systems</span>
                 </a>
                 <p>
                     Leading the digital transformation in healthcare. Our system provides secure, 
@@ -165,10 +204,10 @@
             <div class="footer-column">
                 <h4>Menu</h4>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="Aboutus.html">About Us</a></li>
                     <li><a href="Servicse.html">Services</a></li>
-                    <li><a href="Contactus.html">Contact sus</a></li>
+                    <li><a href="Contactus.html">Contact us</a></li>
                 </ul>
             </div>
 
