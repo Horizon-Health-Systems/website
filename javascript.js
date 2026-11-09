@@ -1,35 +1,16 @@
-  window.addEventListener('scroll', () => {
-            const wrapper = document.querySelector('.contact-wrapper');
-            const sectionPos = wrapper.getBoundingClientRect().top;
-            const screenPos = window.innerHeight / 1.3;
-
-            if(sectionPos < screenPos) {
-                wrapper.classList.add('reveal');
-            }
-        });
-
-<script>
 document.addEventListener("DOMContentLoaded", function () {
+    
+    // Select only the menu links
+    const menuLinks = document.querySelectorAll(".nav-links a");
 
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navigation = document.querySelector("#main-navigation");
-
-    if (!menuToggle || !navigation) return;
-
-    menuToggle.addEventListener("click", function () {
-
-        const isOpen = navigation.classList.toggle("menu-open");
-
-        menuToggle.classList.toggle("active", isOpen);
-
-        menuToggle.setAttribute("aria-expanded", isOpen);
-
-        menuToggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-
+    menuLinks.forEach(link => {
+        link.addEventListener("click", function () {
+            // Remove 'clicked-blue' from all other menu links
+            menuLinks.forEach(l => l.classList.remove("clicked-blue"));
+            
+            // Add 'clicked-blue' only to the clicked menu item
+            this.classList.add("clicked-blue");
+        });
     });
 
 });
-</script>
