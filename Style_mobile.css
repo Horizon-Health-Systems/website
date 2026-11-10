@@ -92,7 +92,7 @@ header nav {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 28px;
+    gap: 18px;
 }
 
 .nav-links {
@@ -138,8 +138,8 @@ header nav .nav-links a:focus-visible {
     display: none;
     width: 44px;
     height: 44px;
-    padding: 9px;
-    border: 1px solid #111827;
+    padding: 4px;
+    border: 1px solid #000000;
     border-radius: 9px;
     background: var(--white);
     cursor: pointer;
