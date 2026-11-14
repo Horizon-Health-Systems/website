@@ -1,682 +1,791 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    
-  <meta name="description" content=" Horizon Health Systems provides modern health management software for clinics. Streamline operations, improve patient care, and grow your practice." />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-    <link rel="stylesheet" href="stylen.css">
-    <script>
 
-/* ================================================
-   HORIZON HEALTH SYSTEMS
-   HOMEPAGE INTERACTIVE JAVASCRIPT
-================================================ */
+    <title>Horizon Health Systems</title>
 
-document.addEventListener("DOMContentLoaded", () => {
+    <meta name="description" content="Horizon Health Systems provides modern health management software for clinics. Streamline operations, improve patient care, and grow your practice.">
 
-    // =============================================
-    // 1. MOBILE NAVIGATION
-    // =============================================
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navigation = document.querySelector("#main-navigation");
-    const navLinks = document.querySelectorAll(".nav-links a");
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    if (menuToggle && navigation) {
-
-        menuToggle.addEventListener("click", () => {
-
-            const isOpen = navigation.classList.toggle("menu-open");
-
-            menuToggle.classList.toggle("active", isOpen);
-
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen? "Close navigation menu": "Open navigation menu"
-            );
-
-        });
-
-        // Close mobile menu after clicking a link
-        navLinks.forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                navigation.classList.remove("menu-open");
-                menuToggle.classList.remove("active");
-
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Open navigation menu"
-                );
-
-            });
-
-        });
-
-    }
-
-
-
-
-    
-/* HORIZON HEALTH SYSTEMS HERO SLIDER */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const slides = document.querySelectorAll(".hero-slide");
-    const dots = document.querySelectorAll(".hero-dot");
-
-    if (!slides.length || !dots.length) return;
-
-    let currentSlide = 0;
-    let sliderTimer;
-
-    function showSlide(index) {
-        slides[currentSlide].classList.remove("active");
-        dots[currentSlide].classList.remove("active");
-
-        currentSlide = index;
-
-        slides[currentSlide].classList.add("active");
-        dots[currentSlide].classList.add("active");
-    }
-
-    function nextSlide() {
-        let next = (currentSlide + 1) % slides.length;
-        showSlide(next);
-    }
-
-    function startSlider() {
-        clearInterval(sliderTimer);
-        sliderTimer = setInterval(nextSlide, 4000);
-    }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener("click", function () {
-            showSlide(index);
-            startSlider();
-        });
-    });
-
-    startSlider();
-
-});
-
-
-
-    // =============================================
-    // 2. HERO IMAGE ANIMATION
-    // =============================================
-
-    const heroImage = document.querySelector(".hero-image");
-    const heroContainer = document.querySelector(".hero-image-container");
-
-    if (heroImage && heroContainer) {
-
-        // Floating animation
-        heroImage.animate(
-            [
-                {
-                    transform: "translateY(0px)"
-                },
-                {
-                    transform: "translateY(-12px)"
-                },
-                {
-                    transform: "translateY(0px)"
-                }
-            ],
-            {
-                duration: 4000,
-                iterations: Infinity,
-                easing: "ease-in-out"
-            }
-        );
-
-        // Interactive 3D mouse movement
-        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-
-            heroContainer.addEventListener("mousemove", event => {
-
-                const rect = heroContainer.getBoundingClientRect();
-
-                const x = (event.clientX - rect.left) / rect.width;
-                const y = (event.clientY - rect.top) / rect.height;
-
-                const rotateY = (x - 0.5) * 10;
-                const rotateX = (0.5 - y) * 10;
-
-                heroImage.style.transform =
-                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
-
-            });
-
-            heroContainer.addEventListener("mouseleave", () => {
-
-                heroImage.style.transform = "";
-
-            });
-
-        }
-
-    }
-
-
-    // =============================================
-    // 3. SCROLL REVEAL ANIMATION
-    // =============================================
-
-    const revealElements = document.querySelectorAll(
-        ".hero-content, .section-header, .feature-card, " +
-        ".trust-header, .metric-card, .testimonial-card, .footer-brand, .footer-column"
-    );
-
-    if ("IntersectionObserver" in window) {
-
-        const revealObserver = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("hhs-visible");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-        revealElements.forEach(element => {
-
-            element.classList.add("hhs-reveal");
-            revealObserver.observe(element);
-
-        });
-
-    } else {
-
-        revealElements.forEach(element => {
-            element.classList.add("hhs-visible");
-        });
-
-    }
-
-
-    // =============================================
-    // 4. FEATURE CARD INTERACTION
-    // =============================================
-
-    const featureCards = document.querySelectorAll(".feature-card");
-
-    featureCards.forEach((card, index) => {
-
-        card.style.setProperty(
-            "--card-delay",
-            `${(index % 3) * 120}ms`
-        );
-
-        card.addEventListener("mouseenter", () => {
-
-            card.classList.add("feature-hover");
-
-        });
-
-        card.addEventListener("mouseleave", () => {
-
-            card.classList.remove("feature-hover");
-
-        });
-
-    });
-
-
-    // =============================================
-    // 5. ANIMATED TRUST STATISTICS
-    // =============================================
-
-    const metricNumbers = document.querySelectorAll(".metric-card h3");
-
-    function animateCounter(element) {
-
-        if (element.dataset.animated === "true") return;
-
-        element.dataset.animated = "true";
-
-        const originalText = element.textContent.trim();
-
-        const number = parseFloat(
-            originalText.replace(/[^0-9.]/g, "")
-        );
-
-        const suffix = originalText.replace(/[0-9.]/g, "");
-
-        if (isNaN(number)) return;
-
-        const duration = 1800;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-
-            const progress = Math.min(
-                (currentTime - startTime) / duration,
-                1
-            );
-
-            // Smooth ease-out animation
-            const eased = 1 - Math.pow(1 - progress, 4);
-
-            const currentNumber = number * eased;
-
-            element.textContent =
-                (number % 1 !== 0
-                    ? currentNumber.toFixed(1)
-                    : Math.floor(currentNumber)) + suffix;
-
-            if (progress < 1) {
-
-                requestAnimationFrame(updateCounter);
-
-            } else {
-
-                element.textContent = originalText;
-
-            }
-
-        }
-
-        requestAnimationFrame(updateCounter);
-
-    }
-
-    if ("IntersectionObserver" in window) {
-
-        const counterObserver = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        animateCounter(entry.target);
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.5
-            }
-        );
-
-        metricNumbers.forEach(number => {
-            counterObserver.observe(number);
-        });
-
-    }
-
-
-    // =============================================
-    // 6. SMOOTH SCROLLING
-    // =============================================
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-        anchor.addEventListener("click", event => {
-
-            const targetID = anchor.getAttribute("href");
-
-            if (!targetID || targetID === "#") return;
-
-            const target = document.querySelector(targetID);
-
-            if (target) {
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
-        });
-
-    });
-
-
-    // =============================================
-    // 7. ACTIVE NAVIGATION LINK
-    // =============================================
-
-    navLinks.forEach(link => {
-
-        const currentPage = window.location.pathname.split("/").pop();
-        const linkPage = link.getAttribute("href").split("/").pop();
-
-        if (currentPage === linkPage) {
-
-            link.classList.add("clicked-blue");
-
-        }
-
-    });
-
-
-    // =============================================
-    // 8. HERO BUTTON INTERACTION
-    // =============================================
-
-    const heroButtons = document.querySelectorAll(".hero-buttons .btn");
-
-    heroButtons.forEach(button => {
-
-        button.addEventListener("mouseenter", () => {
-            button.classList.add("btn-interactive");
-        });
-
-        button.addEventListener("mouseleave", () => {
-            button.classList.remove("btn-interactive");
-        });
-
-    });
-
-
-    // =============================================
-    // 9. FOOTER YEAR
-    // =============================================
-
-    const footerBottom = document.querySelector(".footer-bottom");
-
-    if (footerBottom) {
-
-        footerBottom.innerHTML =
-            footerBottom.innerHTML.replace(
-                /©\s*\d{4}/,
-                `© ${new Date().getFullYear()}`
-            );
-
-    }
-
-
-    // =============================================
-    // 10. PAGE LOADED
-    // =============================================
-
-    document.body.classList.add("hhs-page-loaded");
-
-});
-        document.addEventListener("DOMContentLoaded", function () {
-
-    const heroSlides = document.querySelectorAll(".hero-slide");
-
-    if (heroSlides.length < 2) return;
-
-    let currentImage = 0;
-
-    function changeHeroImage() {
-        
-
-        heroSlides[currentImage].classList.remove("active");
-
-        currentImage = (currentImage + 1) % heroSlides.length;
-
-        heroSlides[currentImage].classList.add("active");
-    }
-
-    setInterval(changeHeroImage, 4000);
-
-});
-
-
-
-3. Result
-Desktop
-Large 480px image slider with 3D flipping.
-
-Tablet
-Responsive 350px height.
-
-Mobile
-Responsive 260px height.
-
-
-Note: Keep your existing HTML image filenames unchanged. The images will rotate automatically every 4 seconds.
-
-</script>
-
-
-   
+    <link rel="stylesheet" href="css/stylen.css">
 </head>
+
 <body>
 
+    <!-- ================= HEADER ================= -->
 
- <header>
-    <a href="index.html" class="logo-container">
-        <img src="aboutm.svg" alt="Logo" class="logo-image">
-    </a>
+    <header class="site-header">
 
-    <button class="menu-toggle" type="button"
-            aria-label="Open navigation menu"
-            aria-controls="main-navigation"
-            aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+        <a href="index.html" class="logo-container">
+            <img src="aboutm.svg" alt="Horizon Health Systems Logo" class="logo-image">
+        </a>
 
-    <nav id="main-navigation">
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="Servicse.html">Services</a>
-            <a href="Aboutus.html">About us</a>
-            <a href="support.html">Support</a>
-            <a href="project.html">Projects</a>
-            <a href="Contactus.html">Contact Us</a>
-        </div>
+        <button class="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="main-navigation"
+                aria-expanded="false">
 
-        <a href="resources.html" class="btn-header">Resources</a>
-    </nav>
- </header>
-     <section class="hero-section">
-    <div class="hero-content">
-        <div class="hero-badge">Next-Gen Care Management</div>
-        <h1 class="hero-title">Empowering <br>African <span>Healthcare </span> <br>with Technology</h1>
-        <p class="hero-description">
-            Modern health management solutions designed for clinics in Ethiopia. Streamline operations, improve patient care, and grow your practice. 
-        </p>
-        <div class="hero-buttons">
-            <a href="Contactus.html" class="btn btn-secondary">Start Free Trial </a>
-            <a href="https://demo.horizonhealthsys.com/openmrs/spa/login" class="btn btn-primary">Watch Demo</a>
-            
-        </div>
-    </div>
+            <span></span>
+            <span></span>
+            <span></span>
 
-    <div class="hero-image-container">
-        <div class="image-glow"></div>
-        <img src="bhd.png" alt="Doctor reviewing digital health data" class="hero-image">
-        <img src="her1.jpg" class="hero-slide active" alt="Healthcare image 1">
-        <img src="her2.jpg" class="hero-slide" alt="Healthcare image 2">
-        <img src="her3.jpg" class="hero-slide" alt="Healthcare image 3">
-        <img src="her4.jpg" class="hero-slide" alt="Healthcare image 4">
-        <img src="her5.jpg" class="hero-slide" alt="Healthcare image 5">
-    </div>
-</section>
+        </button>
+
+        <nav id="main-navigation">
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="Servicse.html">Services</a>
+                <a href="Aboutus.html">About us</a>
+                <a href="support.html">Support</a>
+                <a href="project.html">Projects</a>
+                <a href="Contactus.html">Contact Us</a>
+            </div>
+
+            <a href="resources.html" class="btn-header">
+                Resources
+            </a>
+
+        </nav>
+
+    </header>
 
 
+    <!-- ================= HERO SECTION ================= -->
 
+    <section class="hero-section">
 
+        <div class="hero-content">
 
+            <div class="hero-badge">
+                Next-Gen Care Management
+            </div>
 
+            <h1 class="hero-title">
+                Empowering <br>
+                African <span>Healthcare</span> <br>
+                with Technology
+            </h1>
 
+            <p class="hero-description">
+                Modern health management solutions designed for clinics in Ethiopia.
+                Streamline operations, improve patient care, and grow your practice.
+            </p>
 
+            <div class="hero-buttons">
 
-
-
-
-<!-- 2. CORRECTED FEATURES SECTION (No longer duplicates) -->
-<section class="features-section" id="features">
-    <div class="section-header">
-        <div class="hero-badge">Comprehensive Solutions</div>
-        <h2>Everything Your Clinic Needs</h2>
-        <p>A complete digital ecosystem built to handle every aspect of modern medical practice.</p>
-    </div>
-
-    <!-- First Row of Features -->
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">👤</div>
-            <h3>Patient Management</h3>
-            <p>Unified health records with a secure timeline of history, vitals, and imaging for quick clinical decisions.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">📅</div>
-            <h3>Appointment Scheduling</h3>
-            <p>Smart booking system with automated SMS reminders to reduce no-shows and manage patient flow.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">💳</div>
-            <h3>Billing & Insurance</h3>
-            <p>Streamlined invoicing and insurance claim tracking integrated with local mobile money solutions.</p>
-        </div>
-    </div>
-
-    <!-- Second Row of Features (Corrected) -->
-    <div class="features-grid" style="margin-top: 30px;">
-        <div class="feature-card">
-            <div class="feature-icon">🧪</div>
-            <h3>Lab Integration</h3>
-            <p>Direct syncing with diagnostic hardware to deliver results instantly to the physician's dashboard.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">🏥</div>
-            <h3>Clinic Management</h3>
-            <p>Oversee pharmacy stock, staff attendance, and facility resources from a single administrative hub.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">📈</div>
-            <h3>Reporting & Analytics</h3>
-            <p>Real-time data visualization to monitor clinic performance, patient outcomes, and growth trends.</p>
-        </div>
-    </div>
-</section>
-
-<section class="trust-section">
-    <div class="trust-header">
-        <h2>Trusted by <span>Leading Practitioners</span></h2>
-    </div>
-    <div class="trust-grid">
-        <!-- Metric 1 -->
-        <div class="metric-card">
-            <h3>5+</h3>
-            <p>Clinics Onboarded</p>
-        </div>
-        <!-- Metric 2 -->
-        <div class="metric-card">
-            <h3>10k+</h3>
-            <p>Digital Records Managed</p>
-        </div>
-        <!-- Metric 3 -->
-        <div class="metric-card">
-            <h3>91.9%</h3>
-            <p>System Uptime</p>
-        </div>
-    </div>
-    
-    <div class="testimonial-card">
-        <p>"Switching to ABC Systems reduced our patient registration time by 50%. The local support team is exceptional and understands our needs perfectly."</p>
-        <div class="testimonial-author">
-            <strong>Dr. Abraham Tadesse</strong>
-            <span>Clinical Director, Addis Care</span>
-        </div>
-    </div>
-</section>
-
-
-
-
-
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-brand">
-                <a href="#" class="logo-container">
-                    <img src="logobhdbsvg.svg" alt="Logo" class="logo-image">
-                    <span class="brand-name"> Horizon <br>Health <br>Systems</span>
+                <a href="Contactus.html" class="btn btn-secondary">
+                    Start Free Trial
                 </a>
+
+                <a href="https://demo.horizonhealthsys.com/openmrs/spa/login"
+                   class="btn btn-primary"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Watch Demo
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO IMAGE SLIDER -->
+
+        <div class="hero-image-container" aria-label="Healthcare image slider">
+
+            <div class="image-glow"></div>
+
+            <div class="hero-slider">
+
+                <img src="her1.jpg"
+                     class="hero-slide active"
+                     alt="Healthcare image 1">
+
+                <img src="her2.jpg"
+                     class="hero-slide"
+                     alt="Healthcare image 2">
+
+                <img src="her3.jpg"
+                     class="hero-slide"
+                     alt="Healthcare image 3">
+
+                <img src="her4.jpg"
+                     class="hero-slide"
+                     alt="Healthcare image 4">
+
+                <img src="her5.jpg"
+                     class="hero-slide"
+                     alt="Healthcare image 5">
+
+            </div>
+
+            <button class="slider-arrow slider-prev"
+                    type="button"
+                    aria-label="Previous image">
+                &#10094;
+            </button>
+
+            <button class="slider-arrow slider-next"
+                    type="button"
+                    aria-label="Next image">
+                &#10095;
+            </button>
+
+            <div class="hero-slider-dots" aria-label="Choose slide"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES SECTION ================= -->
+
+    <section class="features-section" id="features">
+
+        <div class="section-header">
+
+            <div class="hero-badge">
+                Comprehensive Solutions
+            </div>
+
+            <h2>Everything Your Clinic Needs</h2>
+
+            <p>
+                A complete digital ecosystem built to handle every aspect
+                of modern medical practice.
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">👤</div>
+                <h3>Patient Management</h3>
                 <p>
-                    Leading the digital transformation in healthcare. Our system provides secure, 
-                    scalable, and intuitive management tools for clinics and hospitals worldwide.
+                    Unified health records with a secure timeline of history,
+                    vitals, and imaging for quick clinical decisions.
                 </p>
             </div>
 
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Appointment Scheduling</h3>
+                <p>
+                    Smart booking system with automated SMS reminders
+                    to reduce no-shows and manage patient flow.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Billing & Insurance</h3>
+                <p>
+                    Streamlined invoicing and insurance claim tracking
+                    integrated with local mobile money solutions.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="features-grid second-features-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3>Lab Integration</h3>
+                <p>
+                    Direct syncing with diagnostic hardware to deliver
+                    results instantly to the physician's dashboard.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏥</div>
+                <h3>Clinic Management</h3>
+                <p>
+                    Oversee pharmacy stock, staff attendance, and facility
+                    resources from a single administrative hub.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Reporting & Analytics</h3>
+                <p>
+                    Real-time data visualization to monitor clinic performance,
+                    patient outcomes, and growth trends.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TRUST SECTION ================= -->
+
+    <section class="trust-section">
+
+        <div class="trust-header">
+            <h2>
+                Trusted by <span>Leading Practitioners</span>
+            </h2>
+        </div>
+
+
+        <div class="trust-grid">
+
+            <div class="metric-card">
+                <h3>5+</h3>
+                <p>Clinics Onboarded</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>10k+</h3>
+                <p>Digital Records Managed</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>91.9%</h3>
+                <p>System Uptime</p>
+            </div>
+
+        </div>
+
+
+        <div class="testimonial-card">
+
+            <p>
+                "Switching to ABC Systems reduced our patient registration
+                time by 50%. The local support team is exceptional and
+                understands our needs perfectly."
+            </p>
+
+            <div class="testimonial-author">
+                <strong>Dr. Abraham Tadesse</strong>
+                <span>Clinical Director, Addis Care</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="logo-container">
+
+                    <img src="logobhdbsvg.svg"
+                         alt="Horizon Health Systems Logo"
+                         class="logo-image">
+
+                    <span class="brand-name">
+                        Horizon <br>
+                        Health <br>
+                        Systems
+                    </span>
+
+                </a>
+
+                <p>
+                    Leading the digital transformation in healthcare.
+                    Our system provides secure, scalable, and intuitive
+                    management tools for clinics and hospitals worldwide.
+                </p>
+
+            </div>
+
+
             <div class="footer-column">
+
                 <h4>Menu</h4>
+
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="Aboutus.html">About Us</a></li>
                     <li><a href="Servicse.html">Services</a></li>
                     <li><a href="Contactus.html">Contact us</a></li>
                 </ul>
+
             </div>
 
+
             <div class="footer-column">
+
                 <h4>Services</h4>
+
                 <ul>
                     <li><a href="#">Patient Portal</a></li>
                     <li><a href="#">E-Prescribing</a></li>
                     <li><a href="#">Telehealth</a></li>
                     <li><a href="#">Analytics</a></li>
                 </ul>
+
             </div>
 
+
             <div class="footer-column">
+
                 <h4>Quick Links</h4>
+
                 <ul>
                     <li><a href="#">Support Center</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Use</a></li>
                     <li><a href="#">Security</a></li>
                 </ul>
+
             </div>
 
+
             <div class="footer-column">
+
                 <h4>Contacts</h4>
+
                 <ul class="contact-info">
                     <li><span>📍</span> Gerji Bole Road, Addis Ababa, Ethiopia</li>
                     <li><span>📧</span> bbonkiye@horizonhealthsys.com</li>
                     <li><span>📞</span> +138 079 96416</li>
                     <li><span>📞</span> +251 929 430484</li>
                 </ul>
+
             </div>
+
         </div>
+
 
         <div class="footer-bottom">
             &copy; 2026 Horizon Health Systems. All rights reserved.
         </div>
+
     </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        /* =====================================
+           1. MOBILE NAVIGATION
+        ===================================== */
+
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navigation = document.querySelector("#main-navigation");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        function closeMenu() {
+            if (!menuToggle || !navigation) return;
+
+            navigation.classList.remove("menu-open");
+            menuToggle.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open navigation menu");
+        }
+
+        if (menuToggle && navigation) {
+
+            menuToggle.addEventListener("click", () => {
+
+                const isOpen = navigation.classList.toggle("menu-open");
+
+                menuToggle.classList.toggle("active", isOpen);
+                menuToggle.setAttribute("aria-expanded", String(isOpen));
+                menuToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation menu" : "Open navigation menu"
+                );
+
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", closeMenu);
+            });
+
+            document.addEventListener("click", event => {
+                if (
+                    navigation.classList.contains("menu-open") &&
+                    !navigation.contains(event.target) &&
+                    !menuToggle.contains(event.target)
+                ) {
+                    closeMenu();
+                }
+            });
+
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape") closeMenu();
+            });
+
+        }
+
+
+        /* =====================================
+           2. HERO IMAGE SLIDER
+        ===================================== */
+
+        const slider = document.querySelector(".hero-image-container");
+        const slides = document.querySelectorAll(".hero-slide");
+        const dotsContainer = document.querySelector(".hero-slider-dots");
+        const prevButton = document.querySelector(".slider-prev");
+        const nextButton = document.querySelector(".slider-next");
+
+        if (slider && slides.length > 0 && dotsContainer) {
+
+            let currentSlide = 0;
+            let sliderTimer = null;
+            let touchStartX = 0;
+
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            slides.forEach((slide, index) => {
+
+                const dot = document.createElement("button");
+
+                dot.type = "button";
+                dot.className = "hero-dot";
+                dot.setAttribute("aria-label", `Show image ${index + 1}`);
+
+                dot.addEventListener("click", () => {
+                    showSlide(index);
+                    restartSlider();
+                });
+
+                dotsContainer.appendChild(dot);
+
+            });
+
+            const dots = dotsContainer.querySelectorAll(".hero-dot");
+
+            function showSlide(index) {
+
+                currentSlide = (index + slides.length) % slides.length;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("active", i === currentSlide);
+                    slide.setAttribute(
+                        "aria-hidden",
+                        String(i !== currentSlide)
+                    );
+                });
+
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentSlide);
+                    dot.setAttribute(
+                        "aria-current",
+                        i === currentSlide ? "true" : "false"
+                    );
+                });
+
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function previousSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            function stopSlider() {
+                if (sliderTimer) {
+                    clearInterval(sliderTimer);
+                    sliderTimer = null;
+                }
+            }
+
+            function startSlider() {
+
+                stopSlider();
+
+                if (!reducedMotion && slides.length > 1 && !document.hidden) {
+                    sliderTimer = setInterval(nextSlide, 4500);
+                }
+
+            }
+
+            function restartSlider() {
+                startSlider();
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener("click", () => {
+                    nextSlide();
+                    restartSlider();
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener("click", () => {
+                    previousSlide();
+                    restartSlider();
+                });
+            }
+
+            slider.addEventListener("mouseenter", stopSlider);
+            slider.addEventListener("mouseleave", startSlider);
+
+            slider.addEventListener("focusin", stopSlider);
+            slider.addEventListener("focusout", event => {
+                if (!slider.contains(event.relatedTarget)) startSlider();
+            });
+
+            slider.addEventListener("touchstart", event => {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener("touchend", event => {
+
+                const touchEndX = event.changedTouches[0].screenX;
+                const difference = touchStartX - touchEndX;
+
+                if (Math.abs(difference) > 50) {
+                    difference > 0 ? nextSlide() : previousSlide();
+                    restartSlider();
+                }
+
+            }, { passive: true });
+
+            document.addEventListener("visibilitychange", () => {
+                document.hidden ? stopSlider() : startSlider();
+            });
+
+            showSlide(0);
+            startSlider();
+
+        }
+
+
+        /* =====================================
+           3. SCROLL REVEAL ANIMATION
+        ===================================== */
+
+        const revealElements = document.querySelectorAll(
+            ".hero-content, .section-header, .feature-card, " +
+            ".trust-header, .metric-card, .testimonial-card, " +
+            ".footer-brand, .footer-column"
+        );
+
+        if ("IntersectionObserver" in window) {
+
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("hhs-visible");
+                            observer.unobserve(entry.target);
+                        }
+
+                    });
+
+                },
+                { threshold: 0.12 }
+            );
+
+            revealElements.forEach(element => {
+                element.classList.add("hhs-reveal");
+                revealObserver.observe(element);
+            });
+
+        } else {
+
+            revealElements.forEach(element => {
+                element.classList.add("hhs-visible");
+            });
+
+        }
+
+
+        /* =====================================
+           4. FEATURE CARD INTERACTION
+        ===================================== */
+
+        const featureCards = document.querySelectorAll(".feature-card");
+
+        featureCards.forEach((card, index) => {
+
+            card.style.setProperty(
+                "--card-delay",
+                `${(index % 3) * 100}ms`
+            );
+
+            card.addEventListener("mouseenter", () => {
+                card.classList.add("feature-hover");
+            });
+
+            card.addEventListener("mouseleave", () => {
+                card.classList.remove("feature-hover");
+            });
+
+        });
+
+
+        /* =====================================
+           5. ANIMATED STATISTICS
+        ===================================== */
+
+        const metricNumbers = document.querySelectorAll(".metric-card h3");
+
+        function animateCounter(element) {
+
+            if (element.dataset.animated === "true") return;
+
+            const originalText = element.textContent.trim();
+            const number = parseFloat(
+                originalText.replace(/[^0-9.]/g, "")
+            );
+
+            const suffix = originalText.replace(/[0-9.]/g, "");
+
+            if (Number.isNaN(number)) return;
+
+            element.dataset.animated = "true";
+
+            const duration = 1600;
+            const startTime = performance.now();
+
+            function updateCounter(currentTime) {
+
+                const progress = Math.min(
+                    (currentTime - startTime) / duration,
+                    1
+                );
+
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const currentNumber = number * eased;
+
+                element.textContent =
+                    (number % 1 !== 0
+                        ? currentNumber.toFixed(1)
+                        : Math.floor(currentNumber)) + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = originalText;
+                }
+
+            }
+
+            requestAnimationFrame(updateCounter);
+
+        }
+
+        if ("IntersectionObserver" in window) {
+
+            const counterObserver = new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+
+                    });
+
+                },
+                { threshold: 0.5 }
+            );
+
+            metricNumbers.forEach(number => {
+                counterObserver.observe(number);
+            });
+
+        }
+
+
+        /* =====================================
+           6. SMOOTH SCROLLING
+        ===================================== */
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener("click", event => {
+
+                const targetID = anchor.getAttribute("href");
+
+                if (!targetID || targetID === "#") return;
+
+                const target = document.querySelector(targetID);
+
+                if (target) {
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+            });
+
+        });
+
+
+        /* =====================================
+           7. ACTIVE NAVIGATION LINK
+        ===================================== */
+
+        const currentPage =
+            window.location.pathname.split("/").pop() || "index.html";
+
+        navLinks.forEach(link => {
+
+            const linkPage = link.getAttribute("href").split("/").pop();
+
+            if (currentPage.toLowerCase() === linkPage.toLowerCase()) {
+                link.classList.add("clicked-blue");
+                link.setAttribute("aria-current", "page");
+            }
+
+        });
+
+
+        /* =====================================
+           8. FOOTER YEAR
+        ===================================== */
+
+        const footerBottom = document.querySelector(".footer-bottom");
+
+        if (footerBottom) {
+            footerBottom.innerHTML = footerBottom.innerHTML.replace(
+                /©\s*\d{4}/,
+                `© ${new Date().getFullYear()}`
+            );
+        }
+
+
+        /* =====================================
+           9. PAGE LOADED
+        ===================================== */
+
+        document.body.classList.add("hhs-page-loaded");
+
+    });
+
+    </script>
+
 </body>
 </html>
