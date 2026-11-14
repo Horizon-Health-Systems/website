@@ -7,110 +7,191 @@
     
     <link rel="stylesheet" href="stylen.css">
 
-     <script>
-document.addEventListener("DOMContentLoaded", function () {
     
-    // Select only the menu links
+document.addEventListener("DOMContentLoaded", function () {
+
+    // =========================================
+    // 1. NAVIGATION ACTIVE LINK
+    // =========================================
+
     const menuLinks = document.querySelectorAll(".nav-links a");
 
     menuLinks.forEach(link => {
         link.addEventListener("click", function () {
-            // Remove 'clicked-blue' from all other menu links
-            menuLinks.forEach(l => l.classList.remove("clicked-blue"));
-            
-            // Add 'clicked-blue' only to the clicked menu item
+
+            menuLinks.forEach(item => {
+                item.classList.remove("clicked-blue");
+            });
+
             this.classList.add("clicked-blue");
         });
     });
 
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // =========================================
+    // 2. MOBILE NAVIGATION TOGGLE
+    // =========================================
 
     const menuToggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.querySelector("#mobile-menu");
     const navigation = document.querySelector("#main-navigation");
+    const navLinks = document.querySelector(".nav-links");
 
-    if (!menuToggle || !navigation) return;
+    const toggleButton = menuToggle || mobileMenu;
 
-    menuToggle.addEventListener("click", function () {
+    if (toggleButton && (navigation || navLinks)) {
 
-        const isOpen = navigation.classList.toggle("menu-open");
+        toggleButton.addEventListener("click", function () {
 
-        menuToggle.classList.toggle("active", isOpen);
+            const targetMenu = navigation || navLinks;
 
-        menuToggle.setAttribute("aria-expanded", isOpen);
+            const isOpen = targetMenu.classList.toggle(
+                navigation ? "menu-open" : "active"
+            );
 
-        menuToggle.setAttribute(
-            "aria-label",
-            isOpen? "Close navigation menu": "Open navigation menu"
+            toggleButton.classList.toggle("active", isOpen);
+            toggleButton.classList.toggle("is-active", isOpen);
+
+            toggleButton.setAttribute("aria-expanded", isOpen);
+
+            toggleButton.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+        });
+
+    }
+
+
+    // =========================================
+    // 3. SMOOTH SCROLLING
+    // =========================================
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+        anchor.addEventListener("click", function (e) {
+
+            const targetId = this.getAttribute("href");
+
+            if (!targetId || targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+
+                e.preventDefault();
+
+                targetElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+    });
+
+
+    // =========================================
+    // 4. CONTACT SECTION SCROLL REVEAL
+    // =========================================
+
+    const contactWrapper = document.querySelector(".contact-wrapper");
+
+    if (contactWrapper) {
+
+        const contactObserver = new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("reveal");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.2
+            }
         );
 
-    });
+        contactObserver.observe(contactWrapper);
 
-});
+    }
 
 
-  window.addEventListener('scroll', () => {
-            const wrapper = document.querySelector('.contact-wrapper');
-            const sectionPos = wrapper.getBoundingClientRect().top;
-            const screenPos = window.innerHeight / 1.3;
+    // =========================================
+    // 5. GENERAL SCROLL REVEAL ANIMATION
+    // =========================================
 
-            if(sectionPos < screenPos) {
-                wrapper.classList.add('reveal');
+    const revealElements = document.querySelectorAll(".js-reveal");
+
+    if ("IntersectionObserver" in window) {
+
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("reveal-active");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.2
             }
+        );
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
         });
 
-const observerOptions = { threshold: 0.2 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal-active');
-            }
+    } else {
+
+        revealElements.forEach(element => {
+            element.classList.add("reveal-active");
         });
-    }, observerOptions);
 
-    document.querySelectorAll('.js-reveal').forEach(el => observer.observe(el));
+    }
 
-// Mobile Navigation Toggle
-const menu = document.querySelector('#mobile-menu');
-const navLinks = document.querySelector('.nav-links');
 
-menu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    menu.classList.toggle('is-active');
-});
+    // =========================================
+    // 6. CONTACT FORM SUBMISSION
+    // =========================================
 
-// Smooth Scrolling for Anchors
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    const contactForm = document.querySelector(".contact-form");
+
+    if (contactForm) {
+
+        contactForm.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            alert("Thank you! Beyana will reach out to you soon.");
+
+            contactForm.reset();
+
         });
-    });
+
+    }
+
 });
 
-// Scroll Reveal Effect (Intersection Observer)
-const revealElements = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.1 });
-
-revealElements.forEach(el => observer.observe(el));
-
-// Form Submission (Mock)
-const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Thank you, Beyana will reach out to you soon!');
-    contactForm.reset();
-});
-
-</script>
      
 
 </body>
