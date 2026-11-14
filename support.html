@@ -282,6 +282,47 @@
     <!-- JAVASCRIPT: MOBILE NAVIGATION -->
     <script>
 
+        
+/* =========================================
+   ZOHO1 - INTERACTIVE CARD ANIMATIONS
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cards = document.querySelectorAll(".zoho1");
+
+    // Scroll reveal animation
+    const cardObserver = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("zoho1-visible");
+
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    cards.forEach(card => {
+
+        card.classList.add("zoho1-hidden");
+
+        cardObserver.observe(card);
+
+    });
+
+});
+
+
         document.addEventListener("DOMContentLoaded", function () {
 
             const menuToggle = document.querySelector(".menu-toggle");
@@ -302,7 +343,7 @@
 
                 menuToggle.setAttribute(
                     "aria-label",
-                    isOpen ? "Close navigation menu" : "Open navigation menu"
+                    isOpen? "Close navigation menu": "Open navigation menu"
                 );
 
             });
