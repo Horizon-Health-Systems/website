@@ -65,6 +65,89 @@ textarea {
         transform 0.8s ease;
 }
 
+
+
+/* =========================================
+   HHS JAVASCRIPT ANIMATION SUPPORT
+========================================= */
+
+/* Scroll reveal */
+
+.hhs-reveal {
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+    transition-delay: var(--card-delay, 0ms);
+}
+
+.hhs-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Feature card hover */
+
+.feature-card {
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.feature-card.feature-hover {
+    transform: translateY(-10px);
+
+    border-color: #16a34a;
+
+    box-shadow:
+        0 15px 35px rgba(22, 163, 74, 0.16);
+}
+
+/* Hero image */
+
+.hero-image {
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+/* Buttons */
+
+.hero-buttons .btn {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.hero-buttons .btn-interactive {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(22, 163, 74, 0.2);
+}
+
+/* Mobile menu accessibility */
+
+.menu-toggle {
+    cursor: pointer;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hhs-reveal,
+    .feature-card,
+    .hero-image,
+    .hero-buttons .btn {
+        transition: none !important;
+        animation: none !important;
+    }
+
+}
+
+
 /* =========================================
    ZOHO1 - PREMIUM ANIMATED CARD
    GREEN + WHITE THEME
