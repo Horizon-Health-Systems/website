@@ -15,6 +15,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("#main-navigation");
+
+    if (!menuToggle || !navigation) return;
+
+    menuToggle.addEventListener("click", function () {
+
+        const isOpen = navigation.classList.toggle("menu-open");
+
+        menuToggle.classList.toggle("active", isOpen);
+
+        menuToggle.setAttribute("aria-expanded", isOpen);
+
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen? "Close navigation menu": "Open navigation menu"
+        );
+
+    });
+
+});
+
 
   window.addEventListener('scroll', () => {
             const wrapper = document.querySelector('.contact-wrapper');
