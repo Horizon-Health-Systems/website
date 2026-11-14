@@ -92,6 +92,18 @@ textarea {
         border-radius: 18px;
     }
 }
+/* Slider height for mobile phones */
+@media screen and (max-width: 768px) {
+    .hero-image-container {
+        height: 300px;
+        min-height: 300px;
+    }
+
+    .hero-slide img {
+        height: 300px;
+        object-fit: cover;
+    }
+}
 
 @media (max-width: 480px) {
     .hero-image-container {
@@ -209,8 +221,8 @@ textarea {
     .feature-card,
     .hero-image,
     .hero-buttons .btn {
-        transition: none !important;
-        animation: none !important;
+        transition: none ! important;
+        animation: none ! important;
     }
 
 }
