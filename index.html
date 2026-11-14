@@ -377,6 +377,41 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("hhs-page-loaded");
 
 });
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const heroSlides = document.querySelectorAll(".hero-slide");
+
+    if (heroSlides.length < 2) return;
+
+    let currentImage = 0;
+
+    function changeHeroImage() {
+
+        heroSlides[currentImage].classList.remove("active");
+
+        currentImage = (currentImage + 1) % heroSlides.length;
+
+        heroSlides[currentImage].classList.add("active");
+    }
+
+    setInterval(changeHeroImage, 4000);
+
+});
+
+
+
+3. Result
+Desktop
+Large 480px image slider with 3D flipping.
+
+Tablet
+Responsive 350px height.
+
+Mobile
+Responsive 260px height.
+
+
+Note: Keep your existing HTML image filenames unchanged. The images will rotate automatically every 4 seconds.
 
 </script>
 
@@ -430,6 +465,11 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="hero-image-container">
         <div class="image-glow"></div>
         <img src="bhd.png" alt="Doctor reviewing digital health data" class="hero-image">
+        <img src="her1 (1).jpg" class="hero-slide active" alt="Healthcare image 1">
+        <img src="her2 (1).jpg" class="hero-slide" alt="Healthcare image 2">
+        <img src="her3 (1).jpg" class="hero-slide" alt="Healthcare image 3">
+        <img src="her4 (1).jpg" class="hero-slide" alt="Healthcare image 4">
+        <img src="her5 (1).jpg" class="hero-slide" alt="Healthcare image 5">
     </div>
 </section>
 
