@@ -1,4 +1,4 @@
- <script>
+
 
 /* ================================================
    HORIZON HEALTH SYSTEMS
@@ -366,4 +366,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-</script>
