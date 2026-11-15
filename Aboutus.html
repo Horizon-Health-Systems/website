@@ -192,6 +192,143 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+          /* =====================================
+           2. HERO IMAGE SLIDER
+        ===================================== */
+
+        const slider = document.querySelector(".hero-image-container");
+        const slides = document.querySelectorAll(".hero-slide");
+        const dotsContainer = document.querySelector(".hero-slider-dots");
+        const prevButton = document.querySelector(".slider-prev");
+        const nextButton = document.querySelector(".slider-next");
+
+        if (slider && slides.length > 0 && dotsContainer) {
+
+            let currentSlide = 0;
+            let sliderTimer = null;
+            let touchStartX = 0;
+
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            slides.forEach((slide, index) => {
+
+                const dot = document.createElement("button");
+
+                dot.type = "button";
+                dot.className = "hero-dot";
+                dot.setAttribute("aria-label", `Show image ${index + 1}`);
+
+                dot.addEventListener("click", () => {
+                    showSlide(index);
+                    restartSlider();
+                });
+
+                dotsContainer.appendChild(dot);
+
+            });
+
+            const dots = dotsContainer.querySelectorAll(".hero-dot");
+
+            function showSlide(index) {
+
+                currentSlide = (index + slides.length) % slides.length;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("active", i === currentSlide);
+                    slide.setAttribute(
+                        "aria-hidden",
+                        String(i !== currentSlide)
+                    );
+                });
+
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentSlide);
+                    dot.setAttribute(
+                        "aria-current",
+                        i === currentSlide ? "true" : "false"
+                    );
+                });
+
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function previousSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            function stopSlider() {
+                if (sliderTimer) {
+                    clearInterval(sliderTimer);
+                    sliderTimer = null;
+                }
+            }
+
+            function startSlider() {
+
+                stopSlider();
+
+                if (!reducedMotion && slides.length > 1 && !document.hidden) {
+                    sliderTimer = setInterval(nextSlide, 4500);
+                }
+
+            }
+
+            function restartSlider() {
+                startSlider();
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener("click", () => {
+                    nextSlide();
+                    restartSlider();
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener("click", () => {
+                    previousSlide();
+                    restartSlider();
+                });
+            }
+
+            slider.addEventListener("mouseenter", stopSlider);
+            slider.addEventListener("mouseleave", startSlider);
+
+            slider.addEventListener("focusin", stopSlider);
+            slider.addEventListener("focusout", event => {
+                if (!slider.contains(event.relatedTarget)) startSlider();
+            });
+
+            slider.addEventListener("touchstart", event => {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener("touchend", event => {
+
+                const touchEndX = event.changedTouches[0].screenX;
+                const difference = touchStartX - touchEndX;
+
+                if (Math.abs(difference) > 50) {
+                    difference > 0 ? nextSlide() : previousSlide();
+                    restartSlider();
+                }
+
+            }, { passive: true });
+
+            document.addEventListener("visibilitychange", () => {
+                document.hidden ? stopSlider() : startSlider();
+            });
+
+            showSlide(0);
+            startSlider();
+
+        }
+
     </script>
 
 </body>
