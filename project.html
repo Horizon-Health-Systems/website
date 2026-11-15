@@ -8,7 +8,31 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylen.css">
-    <script src="javascript.js" defer></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("#main-navigation");
+
+    if (!menuToggle || !navigation) return;
+
+    menuToggle.addEventListener("click", function () {
+
+        const isOpen = navigation.classList.toggle("menu-open");
+
+        menuToggle.classList.toggle("active", isOpen);
+
+        menuToggle.setAttribute("aria-expanded", isOpen);
+
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen? "Close navigation menu": "Open navigation menu"
+        );
+
+    });
+
+});
+</script>
 </head>
 <body>
 
@@ -144,8 +168,8 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="Aboutus.html">About Us</a></li>
                     <li><a href="Servicse.html">Services</a></li>
-                    <li><a href="Support.html">Support</a></li>
-                    <li><a href="Project.html">Projects</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="project.html">Projects</a></li>
                     <li><a href="Contactus.html">Contact us</a></li>
                 </ul>
             </div>
@@ -186,6 +210,5 @@
         </div>
     </footer>
 
-    <script src="javscript.js"></script>
 </body>
 </html>
