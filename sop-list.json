@@ -1,31 +1,39 @@
 [
   {
     "name": "Patient Registration & Demographic Management SOP",
-    "filename": "Patient Registration & Demographic Management.pdf"
+    "filename": "patient_registration_and_demographic_Management.pdf"
   },
   {
     "name": "Recording patient vitals",
-    "filename": "SOP - Recording patient vitals.pdf"
+    "filename": "recording_patient_vitals.pdf"
   },
   {
     "name": "Visit Creation,Check-In & Visit Type Assignment",
-    "filename": "Visit Creation,Check-In & Visit Type Assignment.pdf"
+    "filename": "visit_creation_check-in_and_visit_type_assignment.pdf"
   },
   {
     "name": "Appointment Scheduling & Calendar Management",
-    "filename": "Appointment Scheduling & Calendar Management.pdf"
+    "filename": "appointment_scheduling_and_calendar_management.pdf"
   },
   {
     "name": "Medication Prescribing",
-    "filename": "Medication Prescribing.pdf"
+    "filename": "medication_prescribing.pdf"
   },
   {
     "name": "Payment",
-    "filename": "Payment.pdf"
+    "filename": "payment.pdf"
   },
-   {
+  {
     "name": "Pharmacy",
-    "filename": "Pharmacy.pdf"
+    "filename": "pharmacy.pdf"
+  },
+  {
+    "name": "Payment",
+    "filename": "payment.pdf"
+  },
+  {
+    "name": "Bed Management",
+    "filename": "bed_management.pdf"
   }
   
 ]
