@@ -28,10 +28,6 @@
     "filename": "pharmacy.pdf"
   },
   {
-    "name": "Payment",
-    "filename": "payment.pdf"
-  },
-  {
     "name": "Bed Management",
     "filename": "bed_management.pdf"
   }
